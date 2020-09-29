@@ -1,0 +1,96 @@
+CREATE TABLE person (
+	person_id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  age INTEGER,
+  height_in_cm INTEGER, 
+  city VARCHAR(255),
+  favorite_color VARCHAR(255)
+ );
+ 
+ INSERT INTO person (name, age, height_in_cm, city, favorite_color) 
+ 	VALUES ('Todd', 35, 180, 'Denver', 'Orange'), 
+  			('Justine', 29, 150, 'Arvada', 'Blue'),
+        ('Max', 15, 162, 'Dallas', 'Red'), 
+        ('Mario', 38, 100, 'MarioCity', 'Red'),
+        ('Luigi', 33, 120, 'MarioCity', 'Green');   
+      
+SELECT * FROM person ORDER BY height_in_cm DESC;
+
+SELECT * FROM person ORDER BY height_in_cm ASC;
+
+SELECT * FROM person ORDER BY age DESC;
+
+SELECT * FROM person WHERE age > 20;
+
+select * from person where age = 18;
+
+select * from person where age < 20 and age > 30;
+
+select * from person where age != 27;
+
+select * from person where favorite_color != 'red';
+
+select * from person where favorite_color = 'orange' or favorite_color = 'green';
+
+select * from person where favorite_color IN ('orange', 'green', 'blue');
+
+select * from person where favorite_color in ('yellow', 'purple');
+
+create table orders (
+  order_id SERIAL PRIMARY KEY,
+  person_id INTEGER,
+  product_name VARCHAR(255), 
+  product_price FLOAT,
+  quantity INTEGER);
+  
+insert into orders (person_id, product_name, product_price, quantity) 
+	values (1, 'Among Us', 12.75, 1), (1, 'Fall Guys', 15.99, 3), (2, 'Pistol Pete', 9.75, 1), (2, 'Bullet', 5.00, 6), (3, 'Apple', 1.99, 3);
+  
+select * from orders;
+
+select sum(quantity) from orders;
+
+select sum(product_price * quantity) from orders;
+
+select sum(product_price * quantity) from orders where person_id = 2;
+
+select * from artist;
+  
+insert into artist (artist_id, name) values (999, 'artist1'), (998, 'artist2'), (997, 'artist3');
+
+select * from artist order by name desc limit 10;
+
+select * from artist order by name asc limit 5;
+
+select * from artist where name like 'black%';
+
+select * from artist where name like '%black%';
+
+select first_name, last_name from employee where city = 'Calgary';
+
+-- select * from employee order by age asc limit 1; ???
+select max(birth_date) from employee;
+
+select min(birth_date) from employee;
+
+select * from employee;
+select * from employee where reports_to = 2;
+
+select count(*) from employee where city = 'Lethbridge';
+
+select count(*) from invoice where country = 'USA';
+
+select max(total) from invoice;
+
+select min(total) from invoice;
+
+-- select * from invoice where orders > 5;
+select * from invoice where total > 5;
+
+select count(*) from invoice where total < 5;
+
+select count(*) from invoice where state in ('CA','TX','AZ');
+
+select avg(total) from invoice;
+
+select sum(total) from invoice;
